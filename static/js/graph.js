@@ -18,17 +18,21 @@ function makeGraphs(error, socialHousingProjects) {
     var ndx = crossfilter(socialHousingProjects);
     var all = ndx.groupAll();
 
-    var cityDim = ndx.dimension( function(d) { return d["la"];
+    var cityDim = ndx.dimension(function (d) {
+        return d["la"];
     });
-    var numberOfUnitsDim = ndx.dimension( function(d) { return d["number_of_units"];
+    var numberOfUnitsDim = ndx.dimension(function (d) {
+        return d["number_of_units"];
     });
-    var siteStart = ndx.dimension( function(d) { return d["site_start"];
+    var siteStart = ndx.dimension(function (d) {
+        return d["site_start"];
     });
-    var siteFinish = ndx.dimension( function(d) { return d["site_finish"];
+    var siteFinish = ndx.dimension(function (d) {
+        return d["site_finish"];
     });
-    var numberOfUnitsGroupDim = cityDim.group().reduceCount(function(d) {return d["number_of_units"];
+    var numberOfUnitsGroupDim = cityDim.group().reduceCount(function (d) {
+        return d["number_of_units"];
     });
-
 
 
     var cityGroup = cityDim.group();
@@ -40,15 +44,14 @@ function makeGraphs(error, socialHousingProjects) {
     var minCity = cityDim.top(1)[0]["la"];
 
 
-
-    var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function(d) {return d.number_of_Units});
+    var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function (d) {
+        return d.number_of_Units
+    });
 
     var cityGroupChart = dc.barChart("#housesPerArea");
     var siteStartChart = dc.pieChart("#pie-chart-one");
     var selectField = dc.selectMenu("#menu-select");
     var siteFinishChart = dc.pieChart("#pie-chart-two");
-
-
 
 
     selectField
@@ -72,45 +75,30 @@ function makeGraphs(error, socialHousingProjects) {
         .group(siteFinishGroup);
 
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", "rotate(-65)");
-
-
     cityGroupChart
         .width(1300)
         .height(500)
-        
-        .margins({top: 10, right: 10, bottom: 20, left: 40})
+
+        .margins({top: 10, right: 10, bottom: 55, left: 40})
         .gap(15)
         .brushOn(false)
         .centerBar(true)
         .dimension(cityDim)
         .group(cityGroup)
         .x(d3.scale.ordinal().range([minCity, maxCity]))
-        .ordinalColors(['red','green','blue'])
         .xUnits(dc.units.ordinal)
         .renderLabel(true)
         .xAxisLabel("County/City")
         .elasticX(true)
 
+        .renderlet(function(cityGroupChart){
+            cityGroupChart.selectAll("g.x text")
+            .attr('transform', "rotate(-65)");
+})
         .renderHorizontalGridLines(true);
 
 
-
-
-
-
-
-
     dc.renderAll();
-
 
 
 }
