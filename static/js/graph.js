@@ -94,6 +94,8 @@ function makeGraphs(error, socialHousingProjects) {
         .renderlet(function(cityGroupChart){
             cityGroupChart.selectAll("g.x text")
             .attr('transform', "rotate(-65)");
+            cityGroupChart.selectAll("g rect")
+            .attr('fill', "green");
 })
         .renderHorizontalGridLines(true);
 
