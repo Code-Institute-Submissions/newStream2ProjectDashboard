@@ -72,10 +72,21 @@ function makeGraphs(error, socialHousingProjects) {
         .group(siteFinishGroup);
 
 
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-65)");
+
+
     cityGroupChart
         .width(1300)
         .height(500)
-//git test
+        
         .margins({top: 10, right: 10, bottom: 20, left: 40})
         .gap(15)
         .brushOn(false)
@@ -83,18 +94,18 @@ function makeGraphs(error, socialHousingProjects) {
         .dimension(cityDim)
         .group(cityGroup)
         .x(d3.scale.ordinal().range([minCity, maxCity]))
+        .ordinalColors(['red','green','blue'])
         .xUnits(dc.units.ordinal)
         .renderLabel(true)
         .xAxisLabel("County/City")
         .elasticX(true)
-        .on('renderlet', function(cityGroupChart){
-            cityGroupChart.selectAll('.bar:nth-child(1)').style('fill', 'pink');
 
-            cityGroupChart.selectAll('.tick:nth-child(1)').attr('transform', 'translate(0, 20)');
-            cityGroupChart.selectAll('.tick:nth-child(1)').attr('transform', 'rotate(-60)');
-
-        })
         .renderHorizontalGridLines(true);
+
+
+
+
+
 
 
 
