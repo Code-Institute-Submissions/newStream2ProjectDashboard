@@ -43,6 +43,9 @@ function makeGraphs(error, socialHousingProjects) {
     var maxCity = cityDim.bottom(1)[0]["la"];
     var minCity = cityDim.top(1)[0]["la"];
 
+    var colorScale = d3.scale.ordinal()
+                    .domain([minCity, maxCity])
+                   .range(["red","blue"]);
 
     var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function (d) {
         return d.number_of_Units
@@ -91,11 +94,11 @@ function makeGraphs(error, socialHousingProjects) {
         .xAxisLabel("County/City")
         .elasticX(true)
 
-        .renderlet(function(cityGroupChart){
+        .on('renderlet.somename', function(cityGroupChart){
             cityGroupChart.selectAll("g.x text")
             .attr('transform', "rotate(-65)");
             cityGroupChart.selectAll("g rect")
-            .attr('fill', "green");
+            .attr("fill", function(d){return(colorScale(d));});
 })
         .renderHorizontalGridLines(true);
 
