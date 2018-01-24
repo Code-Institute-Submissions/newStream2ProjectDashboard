@@ -10,8 +10,9 @@ function makeGraphs(error, socialHousingProjects) {
     socialHousingProjects.forEach(function (d) {
         d.county = d["la"];
         d.number_of_Units = +d["number_of_units"];
-        d.site_start = d["site_start"];
+        d.site_start = d["site_start"] + d["site_finish"];
         d.site_finish = d["site_finish"];
+        d.stageOfCompletion = d["stage_one"] + d["stage_two"] + d["stage_three"] + d["stage_four"];
     });
 
 
@@ -33,49 +34,45 @@ function makeGraphs(error, socialHousingProjects) {
     var numberOfUnitsGroupDim = cityDim.group().reduceCount(function (d) {
         return d["number_of_units"];
     });
+    var stagesCompletionDim = ndx.dimension(function (d) {
+        return d.stageOfCompletion;
+    })
 
 
     var cityGroup = cityDim.group();
     var numberOfUnitsGroup = numberOfUnitsDim.group();
     var siteStartGroup = siteStart.group();
     var siteFinishGroup = siteFinish.group();
+    var stagesGrouped = stagesCompletionDim.group();
 
     var maxCity = cityDim.bottom(1)[0]["la"];
     var minCity = cityDim.top(1)[0]["la"];
 
+
+
     var colorScale = d3.scale.ordinal()
                     .domain([minCity, maxCity])
-                   .range(["red","blue"]);
+                   .range(["green","blue"]);
 
     var numberOfHousesPerCountyorCity = cityDim.group().reduceSum(function (d) {
         return d.number_of_Units
     });
 
     var cityGroupChart = dc.barChart("#housesPerArea");
-    var siteStartChart = dc.pieChart("#pie-chart-one");
+    var siteStartChart = dc.rowChart("#site-stage");
     var selectField = dc.selectMenu("#menu-select");
-    var siteFinishChart = dc.pieChart("#pie-chart-two");
 
+    var stagesofCompletionChart = dc.pieChart("#stageofCompletion-chart");
 
     selectField
         .dimension(cityDim)
         .group(cityGroup);
 
     siteStartChart
-        .height(220)
-        .radius(90)
-        .innerRadius(40)
-        .transitionDuration(1500)
+        .height(300)
         .dimension(siteStart)
         .group(siteStartGroup);
 
-    siteFinishChart
-        .height(220)
-        .radius(90)
-        .innerRadius(40)
-        .transitionDuration(2000)
-        .dimension(siteFinish)
-        .group(siteFinishGroup);
 
 
     cityGroupChart
@@ -101,6 +98,19 @@ function makeGraphs(error, socialHousingProjects) {
             .attr("fill", function(d){return(colorScale(d));});
 })
         .renderHorizontalGridLines(true);
+
+    stagesofCompletionChart
+        .height(300)
+        .radius(120)
+        .innerRadius(60)
+        .transitionDuration(1500)
+        .dimension(stagesCompletionDim)
+        .group(stagesGrouped);
+
+
+
+
+
 
 
     dc.renderAll();
