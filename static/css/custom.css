@@ -1,3 +1,8 @@
 .col-lg-12 {
     width: 1349px;
 }
+#housesPerArea .x.axis text {
+    text-anchor: end !important;
+    transform: rotate(-45deg);
+}
+
