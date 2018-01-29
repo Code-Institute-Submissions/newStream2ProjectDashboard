@@ -9,15 +9,26 @@
     filename='lib/css/keen-dashboards.css')}}">
   <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
   <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
+
 </head>
 <body class="application">
+<header>
+ <div class="container">
+
+ </div>
+</header>
+
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./">Social Housing Development in Ireland - Dashboard</a>
+        <a class="navbar-brand" href="./">Progress of Social Housing Development in Ireland 2017</a>
+          <ul class="menu">
+       <li><a href="{{ url_for('housingBodies') }}">Housing Bodies</a></li>
+     </ul>
       </div>
     </div>
   </div>
+
   <div  id="outer" class="container-fluid">
     <div class="row">
       <div class="col-sm-8">
@@ -36,35 +47,26 @@
           <!-- houses per stage of completion -->
 
                   <!-- Stage of completion piechart, site start -->
-          <div class="col-sm-4">
+          <div class="col-lg-6">
             <div class="chart-wrapper">
               <div class="chart-title">
                 Housing Development Progress - Start of Development
               </div>
               <div class="chart-stage">
-                <div id="pie-chart-one"></div>
+                <div id="site-stage"></div>
               </div>
             </div>
           </div>
           <!-- Stage of completion piechart, site start -->
 
           <!-- Stage of completion piechart, site finished -->
-          <div class="col-sm-4">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Housing Development progress - Finished Sites
-              </div>
-              <div class="chart-stage">
-                <div id="pie-chart-two"></div>
-              </div>
-            </div>
-          </div>
+
           <!-- Stage of completion piechart, site finished-->
       <!-- Stage of completion -->
-      <div class="col-sm-4">
+      <div class="col-lg-6">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Stage of Completion
+            Stage of Completion/Administration Proceedings
           </div>
           <div class="chart-stage">
             <div id="stageofCompletion-chart"></div>
