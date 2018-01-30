@@ -16,7 +16,9 @@ def index():
 @app.route('/Housing-Bodies')
 def housingBodies():
     return render_template("housingBodies.html")
-
+@app.route('/funding-Programmes')
+def fundingProgrammes():
+    return render_template("fundingProgrammes.html")
 @app.route('/socialHousing/projects')
 def social_housing_projects():
 

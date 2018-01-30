@@ -5,4 +5,33 @@
     text-anchor: end !important;
     transform: rotate(-45deg);
 }
+ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
 
+li a:hover {
+    background-color: gray;
+    text-decoration: none;
+    color: white;
+}
+
+.active {
+    background-color: gray;
+}
+.navbar-header {
+   display: flex;
+    flex-direction: row;
+
+}
+nav ul li {
+    float: right;
+}
+
+
+@media screen and (max-width: 800px) {
+
+
+
+}
