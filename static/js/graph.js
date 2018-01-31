@@ -8,7 +8,7 @@ function makeGraphs(error, socialHousingProjects) {
     }
 
     socialHousingProjects.forEach(function (d) {
-        d.county = d["la"];
+        d.county = d["County_City"];
         d.number_of_Units = +d["number_of_units"];
     });
 
@@ -18,7 +18,13 @@ function makeGraphs(error, socialHousingProjects) {
 
 
     var cityDim = ndx.dimension(function (d) {
-        return d["la"];
+        return d["County_City"];
+    });
+
+    var bodyDim = ndx.dimension(function(d){
+        if(d["approved_housing_body"]!== "*N/A") {
+            return d["approved_housing_body"];
+        }
     });
 
 
@@ -26,9 +32,9 @@ function makeGraphs(error, socialHousingProjects) {
         if (d["site_start"]!=="null") {
             return "Site Started";
         }else if (d["site_finish"]!=="null") {
-            return "Site Finished"
+            return "Site Finished";
         }else{
-            return "Development in administration proceedings "
+            return "Admin";
             }
 
     });
@@ -44,7 +50,7 @@ function makeGraphs(error, socialHousingProjects) {
         } else if (d["stage_one"] !== "null") {
             return "Stage 1";
         } else {
-            return "Site has Finished Administration proceedings"
+            return "N/A"
         }
     });
 
@@ -53,15 +59,15 @@ function makeGraphs(error, socialHousingProjects) {
     });
     var siteStartGroup = siteStart.group();
     var stageofCompletionGroup = stagesCompletionDim.group();
+    var bodyGroup = bodyDim.group();
 
 
-    var maxCity = cityDim.bottom(1)[0]["la"];
-    var minCity = cityDim.top(1)[0]["la"];
+
+    var maxCity = cityDim.bottom(1)[0]["County_City"];
+    var minCity = cityDim.top(1)[0]["County_City"];
 
 
-    var colorScale = d3.scale.ordinal()
-                             .domain([minCity, maxCity])
-                             .range(["green","blue"]);
+    var colorScale = d3.scale.ordinal().range(["green"]);
 
 
     var cityGroupChart = dc.barChart("#housesPerArea");
@@ -69,6 +75,8 @@ function makeGraphs(error, socialHousingProjects) {
     var selectField = dc.selectMenu("#menu-select");
     var stagesofCompletionChart = dc.pieChart("#stageofCompletion-chart");
     var totalHousesND = dc.numberDisplay("#totalnumHouses");
+    var bodyCount = dc.dataCount(".dc-data-count");
+    var bodyTable = dc.dataTable('.dc-data-table');
 
 
     selectField
@@ -87,6 +95,7 @@ function makeGraphs(error, socialHousingProjects) {
         .radius(120)
         .innerRadius(60)
         .transitionDuration(1500)
+        .turnOnControls(true)
         .dimension(siteStart)
         .group(siteStartGroup);
 
@@ -122,6 +131,19 @@ function makeGraphs(error, socialHousingProjects) {
         .transitionDuration(1500)
         .dimension(stagesCompletionDim)
         .group(stageofCompletionGroup);
+
+    bodyCount
+        .dimension(ndx)
+        .group(all);
+
+    bodyTable
+        .dimension(bodyDim)
+        .group(function (d) {
+
+            return d["approved_housing_body"];
+        })
+        .columns(["approved_housing_body", "County_City", "number_of_units"]);
+
 
 
 

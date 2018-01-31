@@ -10,36 +10,28 @@
       <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
       <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
       <link rel="stylesheet" href="{{ url_for ('static', filename='css/reset.css') }}">
+      <link rel="stylesheet" href="{{url_for ('static', filename='lib/css/introjs.css')}}" />
 </head>
 <body>
-      <nav class="navbar navbar-inverse">
+
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="./">Progress of Social Housing Development in Ireland</a>
-                  <div class="collapse navbar-collapse" id="myNavbar">
-                      <ul class="nav navbar-nav navbar-right">
-                          <li class="active"><a href="{{ url_for('index') }}">Development Numbers</a></li>
-                          <li class="#"><a href="{{ url_for('housingBodies') }}">Housing Bodies</a></li>
-                          <li class="#"><a href="{{ url_for('fundingProgrammes') }}">Funding Programmes</a></li>
-                      </ul>
-                  </div>
+              <a class="navbar-brand" href="./">Progress of Social Housing Development in Ireland</a>
           </div>
+             <button class="intro_button" type="button" autofocus onclick="javascript:introJs().start();">Start Dashboard Tour</button>
         </div>
-      </nav>
+    </nav>
 
   <div  id="outer" class="container-fluid">
+
     <div class="row">
       <div class="col-sm-8">
         <div class="row">
           <!-- houses per stage of completion -->
           <div class="col-lg-12">
             <div class="chart-wrapper">
-              <div class="chart-title">
+              <div class="chart-title" data-step="1" data-intro="Here we can see the number of houses per county or city which have funding to be developed." style="font-weight: normal" data-position="right">
                 Housing Development Numbers per City/County
               </div>
               <div class="chart-stage">
@@ -50,10 +42,10 @@
           <!-- houses per stage of completion -->
 
                   <!-- Stage of completion piechart, site start -->
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="chart-wrapper">
-              <div class="chart-title">
-                Housing Development Progress - Start of Development
+              <div class="chart-title" data-step="2" data-intro="This piechart tells us how many houses have commenced building, finished building or are in administration proceedings." style="font-weight: normal" data-position="right">
+                Housing Development Progress
               </div>
               <div class="chart-stage">
                 <div id="site-stage"></div>
@@ -66,59 +58,70 @@
 
           <!-- Stage of completion piechart, site finished-->
       <!-- Stage of completion -->
-      <div class="col-lg-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Stage of Completion/Administration Proceedings
+          <div class="col-lg-4">
+            <div class="chart-wrapper">
+              <div class="chart-title" data-step="3" data-intro="Here we can see the houses which are still in the Administration Proceedings and what stage they are currently in." style="font-weight: normal" data-position="right">
+                Stage of Completion/Administration Proceedings
+              </div>
+              <div class="chart-stage">
+                <div id="stageofCompletion-chart"></div>
+              </div>
+            </div>
           </div>
-          <div class="chart-stage">
-            <div id="stageofCompletion-chart"></div>
-          </div>
-        </div>
-      </div>
       <!-- Stage of completion -->
 
-        </div>
-      </div>
-
 
 
       <!-- menu select -->
-      <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-              <!--TEST FOR GIT push index.html...small change-->
-            Number of Houses per Area
+          <div class="col-lg-4">
+            <div class="chart-wrapper">
+              <div class="chart-title" data-step="4" data-intro="A dropdown menu for selecting counties\cities with their respective numbers." style="font-weight: normal" data-position="right">
+                  <!--TEST FOR GIT push index.html...small change-->
+                Number of Houses per Area
+              </div>
+              <div class="chart-stage">
+                <div id="menu-select"></div>
+              </div>
+            </div>
           </div>
-          <div class="chart-stage">
-            <div id="menu-select"></div>
-          </div>
-        </div>
-      </div>
       <!-- menu select -->
 
       <!-- Metric 1 -->
-      <div class="col-sm-2">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Total Number of Houses
+          <div class="col-sm-2">
+            <div class="chart-wrapper">
+              <div class="chart-title" data-step="5" data-intro="The total number of social housing projects that are currently being funded in Ireland to date." style="font-weight: normal" data-position="right">
+               Number of Housing Projects
+              </div>
+              <div class="chart-stage" style="background: #33CC99;
+                position: relative;
+                font-size: 29px;
+                color: white;
+                vertical-align: middle;
+                text-align: center;
+                padding-top: 12px;
+                padding-bottom: 0px;">
+                <div id="totalnumHouses"></div>
+              </div>
+            </div>
           </div>
-          <div class="chart-stage" style="background: #33CC99;
-            position: relative;
-            font-size: 29px;
-            color: white;
-            vertical-align: middle;
-            text-align: center;
-            padding-top: 12px;
-            padding-bottom: 0px;">
-            <div id="totalnumHouses"></div>
+      <!-- Metric 1 -->
+          <div class="row">
+          <div class="col-lg-12">
+            <div>
+                <div class="dc-data-count" data-step="6" data-intro="Number of houses per county or city and the Housing Bodies developing them." style="font-weight: normal" data-position="right">
+                    <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a
+                        href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                </div>
+            </div>
+            <table class="table table-hover dc-data-table">
+            </table>
+          </div>
           </div>
         </div>
       </div>
-      <!-- Metric 1 -->
-
     </div>
   </div>
+
   <hr>
   <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
   <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
@@ -128,5 +131,7 @@
   <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
   <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
   <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+  <script src="{{url_for ('static', filename='lib/js/intro.js')}}" type="text/javascript"></script>
+
 </body>
 </html>

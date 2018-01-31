@@ -5,33 +5,27 @@
     text-anchor: end !important;
     transform: rotate(-45deg);
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-    overflow: hidden;
+.dc-select-menu {
+    background: aquamarine;
+    width: 80%;
+    border: none;
+    position: relative;
+    height: 31px;
+    font-size: 15px;
+    color: rebeccapurple;
+    vertical-align: middle;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 0px;
 }
-
-li a:hover {
-    background-color: gray;
-    text-decoration: none;
-    color: white;
-}
-
-.active {
-    background-color: gray;
-}
-.navbar-header {
-   display: flex;
-    flex-direction: row;
-
-}
-nav ul li {
+button {
+    margin-top: 10px;
     float: right;
+    background-color: white;
+    color: rebeccapurple;
+    box-shadow: black;
+}
+body {
+    background-color: lightcyan;
 }
 
-
-@media screen and (max-width: 800px) {
-
-
-
-}
