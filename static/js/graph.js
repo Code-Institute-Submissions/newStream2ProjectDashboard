@@ -10,7 +10,6 @@ function makeGraphs(error, socialHousingProjects) {
     socialHousingProjects.forEach(function (d) {
         d.county = d["la"];
         d.number_of_Units = +d["number_of_units"];
-
     });
 
 
@@ -21,9 +20,8 @@ function makeGraphs(error, socialHousingProjects) {
     var cityDim = ndx.dimension(function (d) {
         return d["la"];
     });
-    var numberOfUnitsDim = ndx.dimension(function (d) {
-        return d["number_of_units"];
-    });
+
+
     var siteStart = ndx.dimension(function (d) {
         if (d["site_start"]!=="null") {
             return "Site Started";
@@ -35,9 +33,7 @@ function makeGraphs(error, socialHousingProjects) {
 
     });
 
-    var numberOfUnitsGroupDim = cityDim.group().reduceCount(function (d) {
-        return d["number_of_units"];
-    });
+
     var stagesCompletionDim = ndx.dimension(function (d) {
         if (d["stage_four"] !== "null") {
             return "Stage 4";
@@ -52,19 +48,11 @@ function makeGraphs(error, socialHousingProjects) {
         }
     });
 
-
-
-
-
-
-
-    var cityGroup = cityDim.group();
-    var numberOfUnitsGroup = numberOfUnitsDim.group();
-    var siteStartGroup = siteStart.group();
-    var stageofCompletionGroup = stagesCompletionDim.group().reduceSum(function(d) {
-        return d["number_of_units"];
+    var cityGroup = cityDim.group().reduceSum(function (d) {
+        return d.number_of_Units;
     });
-
+    var siteStartGroup = siteStart.group();
+    var stageofCompletionGroup = stagesCompletionDim.group();
 
 
     var maxCity = cityDim.bottom(1)[0]["la"];
@@ -72,19 +60,27 @@ function makeGraphs(error, socialHousingProjects) {
 
 
     var colorScale = d3.scale.ordinal()
-                    .domain([minCity, maxCity])
-                   .range(["green","blue"]);
+                             .domain([minCity, maxCity])
+                             .range(["green","blue"]);
 
 
     var cityGroupChart = dc.barChart("#housesPerArea");
     var siteStartChart = dc.pieChart("#site-stage");
     var selectField = dc.selectMenu("#menu-select");
-
     var stagesofCompletionChart = dc.pieChart("#stageofCompletion-chart");
+    var totalHousesND = dc.numberDisplay("#totalnumHouses");
+
 
     selectField
         .dimension(cityDim)
         .group(cityGroup);
+
+    totalHousesND
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function (d) {
+            return d;
+        })
+        .group(all);
 
     siteStartChart
         .height(300)
@@ -115,8 +111,9 @@ function makeGraphs(error, socialHousingProjects) {
             .attr('transform', "rotate(-65)");
             cityGroupChart.selectAll("g rect")
             .attr("fill", function(d){return(colorScale(d));});
-})
+            })
         .renderHorizontalGridLines(true);
+
 
     stagesofCompletionChart
         .height(300)
@@ -125,7 +122,6 @@ function makeGraphs(error, socialHousingProjects) {
         .transitionDuration(1500)
         .dimension(stagesCompletionDim)
         .group(stageofCompletionGroup);
-
 
 
 
