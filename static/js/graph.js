@@ -50,7 +50,7 @@ function makeGraphs(error, socialHousingProjects) {
         } else if (d["stage_one"] !== "null") {
             return "Stage 1";
         } else {
-            return "N/A"
+            return "Advanced"
         }
     });
 
@@ -61,13 +61,14 @@ function makeGraphs(error, socialHousingProjects) {
     var stageofCompletionGroup = stagesCompletionDim.group();
     var bodyGroup = bodyDim.group();
 
+    var colorScale = d3.scale.ordinal()
+                         .domain([cityGroup])
+                        .range(["green"]);
+
 
 
     var maxCity = cityDim.bottom(1)[0]["County_City"];
     var minCity = cityDim.top(1)[0]["County_City"];
-
-
-    var colorScale = d3.scale.ordinal().range(["green"]);
 
 
     var cityGroupChart = dc.barChart("#housesPerArea");
