@@ -22,7 +22,9 @@ function makeGraphs(error, socialHousingProjects) {
     });
 
     var bodyDim = ndx.dimension(function(d){
-        if(d["approved_housing_body"]!== "*N/A") {
+        if (d["approved_housing_body"] === "*N/A"){
+            return "Other";
+        } else {
             return d["approved_housing_body"];
         }
     });
