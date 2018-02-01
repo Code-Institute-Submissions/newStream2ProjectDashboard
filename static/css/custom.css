@@ -23,7 +23,13 @@ button {
     float: right;
     background-color: white;
     color: rebeccapurple;
-    box-shadow: black;
+
+}
+.intro_button {
+    background-color: floralwhite;
+    border: black dotted 2px;
+    height: 35px;
+    color: navy;
 }
 
 a {
@@ -41,4 +47,11 @@ a:hover {
 }
 .navbar-brand {
     font-size: 2em;
+}
+#totalnumHouses {
+    font-size: 50px;
+    color: rebeccapurple;
+}
+.chart-wrapper {
+    border: white solid 2px;
 }
