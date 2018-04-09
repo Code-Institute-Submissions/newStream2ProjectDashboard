@@ -117,12 +117,12 @@ function makeGraphs(error, socialHousingProjects) {
         .renderLabel(true)
         .xAxisLabel("County/City")
         .elasticX(true)
-
+        .colors(d3.scale.category20b())
         .on('renderlet.somename', function(cityGroupChart){
             cityGroupChart.selectAll("g.x text")
             .attr('transform', "rotate(-65)");
-            cityGroupChart.selectAll("g rect")
-            .attr("fill", function(d){return(colorScale(d));});
+            // cityGroupChart.selectAll("g rect")
+            // .attr("fill", function(d){return(colorScale(d));});
             })
         .renderHorizontalGridLines(true);
 

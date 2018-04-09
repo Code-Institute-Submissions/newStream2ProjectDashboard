@@ -33,7 +33,7 @@ button {
 }
 
 a {
-    color: hotpink;
+    color: orange;
     margin-top: 10px;
 
 }
@@ -55,3 +55,11 @@ a:hover {
 .chart-wrapper {
     border: white solid 2px;
 }
+
+@media screen (max-width: 768px){
+    .navbar-brand {
+        font-size: 1em;
+    }
+}
+
+
