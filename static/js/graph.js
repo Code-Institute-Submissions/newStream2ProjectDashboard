@@ -94,6 +94,7 @@ function makeGraphs(error, socialHousingProjects) {
         .group(all);
 
     siteStartChart
+        .ordinalColors(["#79CED7", "#66AFB2", "#C96A23", "#D3D1C5"])
         .height(300)
         .radius(120)
         .innerRadius(60)
@@ -103,11 +104,13 @@ function makeGraphs(error, socialHousingProjects) {
         .group(siteStartGroup);
 
 
+
+
     cityGroupChart
-        .width(1300)
-        .height(500)
+        .width(500)
+        .height(400)
         .margins({top: 10, right: 10, bottom: 55, left: 40})
-        .gap(15)
+        .gap(10)
         .brushOn(false)
         .centerBar(true)
         .dimension(cityDim)
@@ -117,7 +120,7 @@ function makeGraphs(error, socialHousingProjects) {
         .renderLabel(true)
         .xAxisLabel("County/City")
         .elasticX(true)
-        .colors(d3.scale.category20b())
+        .colors(d3.scale.category10())
         .on('renderlet.somename', function(cityGroupChart){
             cityGroupChart.selectAll("g.x text")
             .attr('transform', "rotate(-65)");
@@ -134,6 +137,9 @@ function makeGraphs(error, socialHousingProjects) {
         .transitionDuration(1500)
         .dimension(stagesCompletionDim)
         .group(stageofCompletionGroup);
+
+
+
 
     bodyCount
         .dimension(ndx)

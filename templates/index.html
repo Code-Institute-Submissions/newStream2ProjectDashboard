@@ -28,10 +28,10 @@
   <div  id="outer" class="container-fluid">
 
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-lg-12">
         <div class="row">
           <!-- houses per stage of completion -->
-          <div class="col-lg-12">
+          <div class="col-lg-6">
             <div class="chart-wrapper">
               <div class="chart-title" data-step="1" data-intro="Here we can see the number of houses per county or city which have funding to be developed." style="font-weight: normal" data-position="right">
                 Housing Development Numbers per City/County
@@ -44,7 +44,7 @@
           <!-- houses per stage of completion -->
 
                   <!-- Stage of completion piechart, site start -->
-          <div class="col-lg-4">
+          <div class="col-lg-3">
             <div class="chart-wrapper">
               <div class="chart-title" data-step="2" data-intro="This piechart tells us how many houses have commenced building, finished building or are in administration proceedings." style="font-weight: normal" data-position="right">
                 Housing Development Progress
@@ -60,7 +60,7 @@
 
           <!-- Stage of completion piechart, site finished-->
       <!-- Stage of completion -->
-          <div class="col-lg-4">
+          <div class="col-lg-3">
             <div class="chart-wrapper">
               <div class="chart-title" data-step="3" data-intro="Here we can see the houses which are still in the Administration Proceedings and what stage they are currently in." style="font-weight: normal" data-position="right">
                 Stage of Completion/Administration Proceedings
@@ -104,8 +104,8 @@
           <div class="col-lg-12">
             <div>
                 <div class="dc-data-count" data-step="6" data-intro="Number of houses per county or city and the Housing Bodies developing them." style="font-weight: normal" data-position="right">
-                    <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a
-                        href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                    <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a id="resetButton"
+                        href="javascript:dc.filterAll(); dc.renderAll();">Reset Charts</a>
                 </div>
             </div>
             <table class="table table-hover dc-data-table">
@@ -127,6 +127,8 @@
   <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
   <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
   <script src="{{url_for ('static', filename='lib/js/intro.js')}}" type="text/javascript"></script>
+  <script src="{{url_for ('static', filename='js/custom.js')}}" type="text/javascript"></script>
+  
 
 </body>
 </html>

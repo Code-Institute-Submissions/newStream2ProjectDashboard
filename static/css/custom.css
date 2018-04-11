@@ -1,3 +1,6 @@
+html {
+    width: 100%;
+}
 .col-lg-12 {
     width: 1349px;
 }
@@ -25,15 +28,19 @@ button {
     color: rebeccapurple;
 
 }
+button:hover {
+    background-color: hotpink;
+    color:white;
+}
 .intro_button {
     background-color: floralwhite;
-    border: black dotted 2px;
+    border: white solid 2px;
     height: 35px;
     color: navy;
 }
 
 a {
-    color: orange;
+    color: hotpink;
     margin-top: 10px;
 
 }
@@ -55,11 +62,46 @@ a:hover {
 .chart-wrapper {
     border: white solid 2px;
 }
+#resetButton {
+    font-size: 30px;
+    color:red;
+}
+#resetButton:hover {
+    font-size: 32px;
+    color:darkred;
+}
+.dc-data-count {
+    font-size: 25px;
+    color:black;
+    margin-left: 10px;
+}
 
-@media screen (max-width: 768px){
+@media screen and (max-width: 900px){
+    .navbar {
+        height: 100px;
+    }
     .navbar-brand {
         font-size: 1em;
+        width: 50%;
+        margin-left: 40px;
+    }
+    .intro_button {
+    height: 20px;
+    margin-bottom: 20px;
+    }
+    .col-lg-12 {
+        width: 100%;
+    }
+    #resetButton {
+    font-size: 20px;
+    }
+    #resetButton:hover {
+        font-size: 22px;
+    }
+    .dc-data-count {
+        font-size: 15px;
     }
 }
+
 
 
