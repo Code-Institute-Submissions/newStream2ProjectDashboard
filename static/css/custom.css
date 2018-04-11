@@ -75,7 +75,12 @@ a:hover {
     color:black;
     margin-left: 10px;
 }
-
+#site-stage {
+    background-color: lightgrey;
+}
+#stageofCompletion-chart {
+    background-color: lightgrey;
+}
 @media screen and (max-width: 900px){
     .navbar {
         height: 100px;

@@ -36,7 +36,7 @@ function makeGraphs(error, socialHousingProjects) {
         }else if (d["site_finish"]!=="null") {
             return "Site Finished";
         }else{
-            return "Admin";
+            return "In Stage of Development";
             }
 
     });
@@ -52,7 +52,7 @@ function makeGraphs(error, socialHousingProjects) {
         } else if (d["stage_one"] !== "null") {
             return "Stage 1";
         } else {
-            return "Advanced"
+            return "Advanced from Admin"
         }
     });
 
@@ -96,8 +96,8 @@ function makeGraphs(error, socialHousingProjects) {
     siteStartChart
         .ordinalColors(["#79CED7", "#66AFB2", "#C96A23", "#D3D1C5"])
         .height(300)
-        .radius(120)
-        .innerRadius(60)
+        .radius(100)
+        .innerRadius(40)
         .transitionDuration(1500)
         .turnOnControls(true)
         .dimension(siteStart)
@@ -132,8 +132,8 @@ function makeGraphs(error, socialHousingProjects) {
 
     stagesofCompletionChart
         .height(300)
-        .radius(120)
-        .innerRadius(60)
+        .radius(100)
+        .innerRadius(40)
         .transitionDuration(1500)
         .dimension(stagesCompletionDim)
         .group(stageofCompletionGroup);

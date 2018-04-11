@@ -33,7 +33,7 @@
           <!-- houses per stage of completion -->
           <div class="col-lg-6">
             <div class="chart-wrapper">
-              <div class="chart-title" data-step="1" data-intro="Here we can see the number of houses per county or city which have funding to be developed." style="font-weight: normal" data-position="right">
+              <div class="chart-title" data-step="1" data-intro="Here we can see the number of houses per county/city. When you click on a specific area (bar) the other charts will automatically adjust to show the relevant information for that area." style="font-weight: normal" data-position="right">
                 Housing Development Numbers per City/County
               </div>
               <div class="chart-stage">
@@ -42,11 +42,23 @@
             </div>
           </div>
           <!-- houses per stage of completion -->
+          
+                <!-- Stage of completion -->
+          <div class="col-lg-3">
+            <div class="chart-wrapper">
+              <div class="chart-title" data-step="2" data-intro="This piechart shows the sites which are still in the administration proceedings and what stage they are currently in." style="font-weight: normal" data-position="right">
+                Stage of Administration Proceedings
+              </div>
+              <div class="chart-stage">
+                <div id="stageofCompletion-chart"></div>
+              </div>
+            </div>
+          </div>
 
                   <!-- Stage of completion piechart, site start -->
           <div class="col-lg-3">
             <div class="chart-wrapper">
-              <div class="chart-title" data-step="2" data-intro="This piechart tells us how many houses have commenced building, finished building or are in administration proceedings." style="font-weight: normal" data-position="right">
+              <div class="chart-title" data-step="3" data-intro="This piechart tells us how many sites have commenced building, finished building or are in administration proceedings." style="font-weight: normal" data-position="right">
                 Housing Development Progress
               </div>
               <div class="chart-stage">
@@ -59,17 +71,7 @@
           <!-- Stage of completion piechart, site finished -->
 
           <!-- Stage of completion piechart, site finished-->
-      <!-- Stage of completion -->
-          <div class="col-lg-3">
-            <div class="chart-wrapper">
-              <div class="chart-title" data-step="3" data-intro="Here we can see the houses which are still in the Administration Proceedings and what stage they are currently in." style="font-weight: normal" data-position="right">
-                Stage of Completion/Administration Proceedings
-              </div>
-              <div class="chart-stage">
-                <div id="stageofCompletion-chart"></div>
-              </div>
-            </div>
-          </div>
+
       <!-- Stage of completion -->
 
 
@@ -77,7 +79,7 @@
       <!-- menu select -->
           <div class="col-lg-4">
             <div class="chart-wrapper">
-              <div class="chart-title" data-step="4" data-intro="A dropdown menu for selecting counties\cities with their respective numbers." style="font-weight: normal" data-position="right">
+              <div class="chart-title" data-step="4" data-intro="A dropdown menu for selecting the county or city you wish to inquire about. The total number of houses for that area is also given here." style="font-weight: normal" data-position="right">
                   <!--TEST FOR GIT push index.html...small change-->
                 Number of Houses per Area
               </div>
@@ -91,7 +93,7 @@
       <!-- Metric 1 -->
           <div class="col-lg-4">
             <div class="chart-wrapper">
-              <div class="chart-title" data-step="5" data-intro="The total number of Housing Project Developments. When you select a county or city it will show the number of projects respectively." style="font-weight: normal" data-position="right">
+              <div class="chart-title" data-step="5" data-intro="Here we display the total number of sites per area." style="font-weight: normal" data-position="right">
                Number of Housing Projects
               </div>
               <div class="chart-stage">
@@ -103,7 +105,7 @@
           <div class="row">
           <div class="col-lg-12">
             <div>
-                <div class="dc-data-count" data-step="6" data-intro="Number of houses per county or city and the Housing Bodies developing them." style="font-weight: normal" data-position="right">
+                <div class="dc-data-count" data-step="6" data-intro="Displayed in this table are the number of houses being developed and the housing body/charity funding the development. Where it says N/A I can only assume it is being paid for by the respective council." style="font-weight: normal" data-position="right">
                     <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a id="resetButton"
                         href="javascript:dc.filterAll(); dc.renderAll();">Reset Charts</a>
                 </div>
